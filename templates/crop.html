@@ -1,0 +1,57 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌱 FarmWise - Crop Recommendation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <a href="{{ url_for('home') }}" class="back">← Back to Home</a>
+    <h1>🌱 Crop Recommendation (Coming Soon)</h1>
+    <p>This section will recommend suitable crops based on soil and weather parameters.</p>
+  </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌱 FarmWise - Crop Recommendation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+      <a href="{{ url_for('home') }}" class="back">← Back to Home</a>
+      <h1>🌱 FarmWise - Crop Recommendation</h1>
+      <p>Enter soil and climate details to get the best crop suggestion.</p>
+
+      <form method="post" class="crop-form">
+        <input type="number" name="N" step="any" placeholder="Nitrogen (N)" required>
+        <input type="number" name="P" step="any" placeholder="Phosphorous (P)" required>
+        <input type="number" name="K" step="any" placeholder="Potassium (K)" required>
+        <input type="number" name="temperature" step="any" placeholder="Temperature (°C)" required>
+        <input type="number" name="humidity" step="any" placeholder="Humidity (%)" required>
+        <input type="number" name="ph" step="any" placeholder="pH Level" required>
+        <input type="number" name="rainfall" step="any" placeholder="Rainfall (mm)" required>
+        <button type="submit">Predict Crop</button>
+      </form>
+
+      {% if crop %}
+      <div class="result">
+        <h3>Recommended Crop:</h3>
+        <p><strong>{{ crop }}</strong></p>
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>

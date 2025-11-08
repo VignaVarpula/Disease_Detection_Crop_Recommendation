@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿 FarmWise - Plant Disease Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+      <a href="{{ url_for('home') }}" class="back">← Back to Home</a>
+      <h1>🌿 FarmWise - Plant Disease Detection</h1>
+      <p>Upload a leaf image to identify the disease.</p>
+
+      <form action="{{ url_for('disease_detection') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+
+      {% if filename %}
+        <div class="result">
+          <h3>Uploaded Image:</h3>
+          <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image">
+          <h3>Prediction Result:</h3>
+          <p><strong>Disease:</strong> {{ prediction }}</p>
+          <p><strong>Confidence:</strong> {{ confidence|round(2) }}%</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
